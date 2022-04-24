@@ -1,0 +1,11 @@
+function test takes nothing returns nothing
+	local LCG gen
+	call TriggerSleepAction(0)
+	set gen = LCG.create(-1) // random seed
+	call DisplayTextToPlayer(Player(0), 0, 0, R2S(gen.real(-5,5)))
+	call DisplayTextToPlayer(Player(0), 0, 0, R2S(gen.real(-5,5)))
+	call DisplayTextToPlayer(Player(0), 0, 0, R2S(gen.real(-5,5)))
+	call DisplayTextToPlayer(Player(0), 0, 0, I2S(gen.integer(-15,15)))
+	call DisplayTextToPlayer(Player(0), 0, 0, I2S(gen.integer(-15,15)))
+	call DisplayTextToPlayer(Player(0), 0, 0, I2S(gen.integer(-15,15)))
+endfunction
