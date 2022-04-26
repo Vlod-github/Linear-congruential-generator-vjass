@@ -1,4 +1,5 @@
 # Linear congruential generator
+Linear congruential generator implementation in vjass.
 ## Example
 ```scala
 local LCG gen = LCG.create(-1) // -1 for random seed
