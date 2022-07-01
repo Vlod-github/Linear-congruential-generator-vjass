@@ -1,33 +1,35 @@
+//https://github.com/Vlod-github/Linear-congruential-generator-vjass
+
 library LibLCG
 
 private function mod takes integer dividend, integer divisor returns integer
-	return dividend - (dividend / divisor) * divisor
+    return dividend - (dividend / divisor) * divisor
 endfunction
 
 struct LCG
-	integer seed
-	
-	static method create takes integer seed returns thistype
-		local thistype obj = thistype.allocate()
-		if seed < 0 or seed > 134455 then
-			set obj.seed = GetRandomInt(0, 134455)
-			call DisplayTextToPlayer(Player(0), 0, 0, I2S(obj.seed))
-		else
-			set obj.seed = seed
-		endif
-		return obj
-	endmethod
-	
-	method real takes real a, real b returns real
-		set .seed = mod(.seed*141 + 28411, 134456)
-		return (I2R(.seed)/134455)*(b-a) + a
-	endmethod
-	
-	method integer takes integer a, integer b returns integer
-		set .seed = mod(.seed*141 + 28411, 134456)
-		return R2I((I2R(.seed)/134455)*(b-a) + a + 0.5)
-	endmethod
-	
+    integer seed
+    
+    static method create takes integer seed returns thistype
+        local thistype obj = thistype.allocate()
+        if seed < 0 or seed > 134455 then
+            set obj.seed = GetRandomInt(0, 134455)
+            // call DisplayTextToPlayer(Player(0), 0, 0, I2S(obj.seed))
+        else
+            set obj.seed = seed
+        endif
+        return obj
+    endmethod
+    
+    method real takes real a, real b returns real
+        set .seed = mod(.seed*141 + 28411, 134456)
+        return (.seed/134455.)*(b-a) + a
+    endmethod
+    
+    method integer takes integer a, integer b returns integer
+        set .seed = mod(.seed*141 + 28411, 134456)
+        return R2I((.seed/134456.)*(b-a+1) + a)
+    endmethod
+    
 endstruct
 
 
